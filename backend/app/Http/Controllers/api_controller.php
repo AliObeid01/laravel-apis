@@ -27,6 +27,51 @@ class api_controller extends Controller
 
     }
 
+    function evaluteExpr($string='+ 9 * 12 6'){
+
+        $expr=preg_split('/ /',$string);
+        $operators=['+','-','*','/'];
+        $evalute=[];
+        $result=0;
+
+        for($i = count($expr)-1; $i >= 0; $i--)
+        {
+           if(!in_array($expr[$i], $operators)){
+
+             array_push($evalute,$expr[$i]);
+           }
+           else{
+
+                $op2=array_pop($evalute);
+                $op1=array_pop($evalute);
+
+                if ($expr[$i] == "*"){
+                    $result=$op1*$op2;
+                    array_push($evalute,$result);
+                }
+
+                elseif($expr[$i] == "/"){
+                    $result=$op1/$op2;
+                    array_push($evalute,$result);
+                }
+
+                elseif($expr[$i] == "+"){
+                    $result=$op1+$op2;
+                    array_push($evalute,$result);
+                }
+
+                else{
+                    $result=$op1-$op2;
+                    array_push($evalute,$result);
+                }
+
+            }              
+           }
+
+           return $evalute;
+        }
+        
     
 
+    
 }
