@@ -108,6 +108,10 @@ class api_controller extends Controller
            return $binary_string;   
         }
 
+    //SortString take a string
+    //return a sorted string with alphapitical order first ignoring the sensitive case and then the sorted numbers 
+    //used natcasesort to sort the chars with insensitive of capital letters
+    //used helper sort function to sort the numbers
     function sortString($string="6jnM31Q"){
       
       $array=str_split($string);
