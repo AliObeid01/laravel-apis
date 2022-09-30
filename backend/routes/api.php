@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api_controller;
 
 
+Route::get("/placeValue-api/{num?}",[api_controller::class, 'placeValue']);
 
 
 
