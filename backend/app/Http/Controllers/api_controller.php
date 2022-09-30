@@ -27,7 +27,11 @@ class api_controller extends Controller
 
     }
 
-    function evaluteExpr($string='+ 9 * 12 6'){
+    //evalute take a prefix string expresiion
+    //return the evalute ff the expression
+    //used for loop in reverse way to iterate through the expression from the end
+    //evaluate array to store the result of each operation done and have the last result
+    function evaluateExpr($string='+ 9 * 12 6'){
 
         $expr=preg_split('/ /',$string);
         $operators=['+','-','*','/'];
