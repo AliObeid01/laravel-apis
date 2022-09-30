@@ -103,9 +103,53 @@ class api_controller extends Controller
                 
               }
                
-           }
+            }
 
            return $binary_string;   
-       }
+        }
+
+    function sortString($string="6jnM31Q"){
+      
+      $array=str_split($string);
+      
+      for($i=0;$i<count($array);$i++){
+
+        if (ctype_lower($array[$i])){
+           $charlower[]=$array[$i];
+        }
+        else if (ctype_upper($array[$i])) {
+           $charcapital[]=$array[$i];    
+         }
+        else if (is_numeric($array[$i])) {
+           $num[]=$array[$i];    
+        }
+      }   
+    
+      $sorted_num=$this->HelperSort($num);
+      $char = array_merge($charlower, $charcapital);
+      natcasesort($char);
+      $sorted_string=array_merge($char,$sorted_num);
+      $output=implode("",$sorted_string);
+  
+    return response()->json([
+        "status" => "Sorted",
+        "message" => $output
+    ]);
+}
+
+    function HelperSort($array){
+
+      for($i = 0; $i < count($array); $i ++) {
+         for($j = 0; $j < count($array)-1; $j ++){
+             if($array[$j]>$array[$j+1]){
+                $temp = $array[$j+1];
+                $array[$j+1]=$array[$j];
+                $array[$j]=$temp;   
+              }
+
+            }
+         }
+         return $array;
+    }
 
 }
