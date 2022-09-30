@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 class api_controller extends Controller
 {
-    
+    //placeValue take a number
+    //return the place value of each digit
+    //ex: 39 ➞ [30, 9]
     function placeValue($num=152365){
        
        $result=[];
@@ -23,6 +25,8 @@ class api_controller extends Controller
 
     return $result;
 
-    }  
+    }
+
+    
 
 }
