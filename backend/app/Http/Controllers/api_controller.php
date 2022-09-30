@@ -31,7 +31,7 @@ class api_controller extends Controller
     //return the evalute ff the expression
     //used for loop in reverse way to iterate through the expression from the end
     //evaluate array to store the result of each operation done and have the last result
-    function evaluateExpr($string='+ 9 * 12 6'){
+    function evaluateExpr($string='+ -10 10'){
 
         $expr=preg_split('/ /',$string);
         $operators=['+','-','*','/'];
@@ -50,22 +50,22 @@ class api_controller extends Controller
                 $op1=array_pop($evalute);
 
                 if ($expr[$i] == "*"){
-                    $result=$op1*$op2;
+                    $result=$op2*$op1;
                     array_push($evalute,$result);
                 }
 
                 elseif($expr[$i] == "/"){
-                    $result=$op1/$op2;
+                    $result=$op2/$op1;
                     array_push($evalute,$result);
                 }
 
                 elseif($expr[$i] == "+"){
-                    $result=$op1+$op2;
+                    $result=$op2+$op1;
                     array_push($evalute,$result);
                 }
 
                 else{
-                    $result=$op1-$op2;
+                    $result=$op2-$op1;
                     array_push($evalute,$result);
                 }
 
@@ -75,7 +75,33 @@ class api_controller extends Controller
            return $evalute;
         }
         
-    
+    function binary($string='My father was born in 1974.10.25.'){
+        
+        preg_match_all("/[a-zA-Z\'\/~`\!@#\$%\^&\*\(\)_\-\+=\ {\}\[\]\|;:'\<\>,\.\?\\\]+|\d+/", $string, $match);
+        $string_array = $match[0];
+        $binary_string='';
 
-    
+        for ($i = 0; $i < count($string_array); $i++){
+
+             if (is_numeric($string_array[$i])){
+               $remainder = '';
+               while ($string_array[$i]>=1)
+               {
+                 $remainder .= $string_array[$i] % 2;
+                 $string_array[$i] = intval($string_array[$i] / 2);
+               }
+                  
+                $binary_string.=strrev($remainder);
+              }
+              else{
+                  
+                $binary_string.=$string_array[$i];
+                
+              }
+               
+           }
+
+           return $binary_string;   
+       }
+
 }
