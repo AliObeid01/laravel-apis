@@ -74,7 +74,11 @@ class api_controller extends Controller
 
            return $evalute;
         }
-        
+
+    //binary take a string
+    //return the binary string after convert the numbers inside the string to binary format
+    //used pregmatch to separate the numbers from char in string
+    //used for loop to check if the current string is numbers and convert it to binary then added it to the binary string
     function binary($string='My father was born in 1974.10.25.'){
         
         preg_match_all("/[a-zA-Z\'\/~`\!@#\$%\^&\*\(\)_\-\+=\ {\}\[\]\|;:'\<\>,\.\?\\\]+|\d+/", $string, $match);
